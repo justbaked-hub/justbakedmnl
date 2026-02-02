@@ -1,0 +1,119 @@
+console.log("Checkout script loaded");
+
+const proofFileInput = document.getElementById("proofFile");
+const proofBase64Input = document.getElementById("proofBase64");
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const orderSummary = document.getElementById("orderSummary");
+const summaryTotal = document.getElementById("summaryTotal");
+const form = document.getElementById("checkoutForm");
+const paymentSelect = document.getElementById("paymentMethod");
+const paymentQR = document.getElementById("paymentQR");
+const paymentQRImg = document.getElementById("paymentQRImg");
+
+const paymentQRMap = {
+  Gcash: "pictures/gcash-qr.JPG",
+  BPI: "pictures/bpi-qr.png",
+  Maya: "pictures/maya-qr.JPG",
+  Maribank: "pictures/maribank-qr.PNG"
+};
+
+
+/* 🚫 Block checkout if cart is empty */
+if (cart.length === 0) {
+  alert("Your cart is empty.");
+  window.location.href = "index.html";
+}
+
+/* 🛒 Render order summary */
+let total = 0;
+let cartText = [];
+
+cart.forEach(item => {
+  const qty = item.quantity || 1;
+  const itemTotal = item.price * qty;
+  total += itemTotal;
+
+  cartText.push(`${item.name} - ₱${item.price} x${qty}`);
+
+  const li = document.createElement("li");
+  li.className = "list-group-item d-flex justify-content-between align-items-center";
+  li.innerHTML = `
+    <span>${item.name} x${qty}</span>
+    <span>₱${itemTotal}</span>
+  `;
+  orderSummary.appendChild(li);
+});
+
+summaryTotal.textContent = total;
+
+/* 🧾 Populate hidden fields */
+document.getElementById("cartItems").value = cartText.join(", ");
+document.getElementById("totalAmount").value = total;
+
+proofFileInput.addEventListener("change", () => {
+  const file = proofFileInput.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Please upload an image file.");
+    proofFileInput.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    proofBase64Input.value = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+paymentSelect.addEventListener("change", () => {
+  const method = paymentSelect.value;
+
+  if (paymentQRMap[method]) {
+    paymentQRImg.src = paymentQRMap[method];
+    paymentQR.style.display = "block";
+  } else {
+    paymentQR.style.display = "none";
+    paymentQRImg.src = "";
+  }
+});
+
+
+/* 📤 Final submit handling (NORMAL form submit) */
+form.addEventListener("submit", (event) => {
+  console.log("Form submitting normally with file upload");
+
+  const phoneLocal = document.getElementById("phoneLocal");
+  const phoneHidden = document.getElementById("phone");
+
+  /* 📱 Phone validation (10 digits only) */
+  if (!/^\d{10}$/.test(phoneLocal.value)) {
+    alert("Phone number must be exactly 10 digits.");
+    phoneLocal.focus();
+    event.preventDefault(); // block ONLY on validation error
+    return;
+  }
+
+  phoneHidden.value = "+63" + phoneLocal.value;
+  
+/*
+  if (!proofBase64Input.value) {
+  alert("Please upload proof of payment.");
+  event.preventDefault();
+  return;
+}
+
+
+*/
+
+	
+  /* 🧹 Clear cart before Apps Script redirect */
+  setTimeout(() => {
+	localStorage.removeItem("cart");
+  }, 500);
+
+
+  // ✅ Let browser submit the form naturally
+});

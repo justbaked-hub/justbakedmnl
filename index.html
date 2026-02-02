@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>JustBakedMNL Cookies</title>
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container py-4 fade-in">
+
+    <h1 class="text-center mb-4">🍪 JustBakedMNL Cookies</h1>
+
+    <div class="text-center mb-4">
+      <a href="cart.html" class="btn btn-warning btn-lg shadow-sm">
+        🛒 View Cart (<span id="cartCount">0</span>)
+      </a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="productGrid">
+    </div>
+  
+	<div id="cartToast" class="cart-toast">
+		Added to cart 🛒
+	</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
