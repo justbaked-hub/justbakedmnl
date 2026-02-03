@@ -274,7 +274,13 @@ html, body {
 /* Optional: control banner height on desktop */
 @media (min-width: 768px) {
   .top-banner img {
-    max-height: 150x;
+    max-height: 380px;
     object-fit: cover;
+  }
+}
+
+@media (max-width: 576px) {
+  .top-banner img {
+    height: 140px;
   }
 }
