@@ -18,6 +18,7 @@ const paymentQRMap = {
   Maribank: "pictures/maribank-qr.PNG"
 };
 
+let submitTimeoutHandle = null;
 
 /* 🚫 Block checkout if cart is empty */
 if (cart.length === 0) {
@@ -116,6 +117,12 @@ form.addEventListener("submit", (event) => {
 	  submitText.textContent = "Submitting order...";
 	  submitSpinner.classList.remove("d-none");
 	  document.getElementById("pageLoader").classList.remove("d-none");
+	  
+	  /* ⏱ AUTO-FAIL AFTER 20 SECONDS */
+	submitTimeoutHandle = setTimeout(() => {
+	  document.getElementById("pageLoader").classList.add("d-none");
+	  document.getElementById("submitTimeout").classList.remove("d-none");
+	}, 1000); // 20 seconds
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
