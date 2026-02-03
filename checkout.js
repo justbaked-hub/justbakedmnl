@@ -107,6 +107,15 @@ form.addEventListener("submit", (event) => {
 
 */
 
+	/* 🔄 LOADING STATE */
+	  const submitBtn = document.getElementById("submitBtn");
+	  const submitText = document.getElementById("submitText");
+	  const submitSpinner = document.getElementById("submitSpinner");
+
+	  submitBtn.disabled = true;
+	  submitText.textContent = "Submitting order...";
+	  submitSpinner.classList.remove("d-none");
+	  document.getElementById("pageLoader").classList.remove("d-none");
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {

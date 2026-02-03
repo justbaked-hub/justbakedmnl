@@ -160,12 +160,35 @@
         </label>
       </div>
 
-      <button type="submit" class="btn btn-warning w-100">
-        Place Order
-      </button>
+		<button
+		  type="submit"
+		  id="submitBtn"
+		  class="btn btn-warning w-100 d-flex justify-content-center align-items-center gap-2">
+		  <span id="submitText">Place Order</span>
+		  <span
+			id="submitSpinner"
+			class="spinner-border spinner-border-sm d-none"
+			role="status"
+			aria-hidden="true"
+		  ></span>
+		</button>
+
     </form>
   </div>
 </div>
+
+<div
+  id="pageLoader"
+  class="position-fixed top-0 start-0 w-100 h-100 bg-white d-none"
+  style="z-index: 9999;"
+>
+  <div class="d-flex flex-column justify-content-center align-items-center h-100">
+    <div class="spinner-border text-warning mb-3" role="status"></div>
+    <h5>Submitting your order…</h5>
+    <small>Please don’t close this page</small>
+  </div>
+</div>
+
 
 <script src="checkout.js"></script>
 
