@@ -122,7 +122,7 @@ form.addEventListener("submit", (event) => {
 	submitTimeoutHandle = setTimeout(() => {
 	  document.getElementById("pageLoader").classList.add("d-none");
 	  document.getElementById("submitTimeout").classList.remove("d-none");
-	}, 1000); // 20 seconds
+	}, 20000); // 20 seconds
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
