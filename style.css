@@ -300,3 +300,28 @@ html, body {
   background: #ffc107;
 }
 
+.top-banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.top-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Optional: control banner height on desktop */
+@media (min-width: 768px) {
+  .top-banner img {
+    max-height: 380px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 576px) {
+  .top-banner img {
+    height: 140px;
+  }
+}

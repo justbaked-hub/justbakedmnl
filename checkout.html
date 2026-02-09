@@ -129,6 +129,17 @@
 			class="img-fluid rounded shadow-sm"
 			style="max-width: 260px;"
 		  />
+		  
+		  <small class="text-muted d-block mt-2">
+		  📱 On iPhone: tap “Save Image” after preview opens
+		  </small>
+		  
+		  <button
+			type="button"
+			id="saveQRBtn"
+			class="btn btn-outline-secondary btn-sm">
+			💾 Save QR Code
+		  </button>
 		</div>
       </div>
 	  
@@ -161,12 +172,63 @@
         </label>
       </div>
 
-      <button type="submit" class="btn btn-warning w-100">
-        Place Order
-      </button>
+		<button
+		  type="submit"
+		  id="submitBtn"
+		  class="btn btn-warning w-100 d-flex justify-content-center align-items-center gap-2">
+		  <span id="submitText">Place Order</span>
+		  <span
+			id="submitSpinner"
+			class="spinner-border spinner-border-sm d-none"
+			role="status"
+			aria-hidden="true"
+		  ></span>
+		</button>
+
     </form>
   </div>
 </div>
+
+<!-- Submission Timeout Message -->
+<div
+  id="submitTimeout"
+  class="position-fixed top-0 start-0 w-100 h-100 bg-white d-none"
+  style="z-index: 2000;"
+>
+  <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center p-4">
+    <h3 class="mb-3">⏳ Submission taking longer than expected</h3>
+    <p class="mb-4">
+      Please do not refresh immediately.<br>
+      You may retry or contact <strong>JustBakedMNL</strong> for assistance.
+    </p>
+
+    <button class="btn btn-warning mb-3 w-100" onclick="location.reload()">
+      Retry Submission
+    </button>
+
+    <a
+      href="https://www.instagram.com/justbakedmnl"
+      target="_blank"
+      class="btn btn-outline-dark w-100"
+    >
+      Message JustBakedMNL
+    </a>
+  </div>
+</div>
+
+
+<div
+  id="pageLoader"
+  class="position-fixed top-0 start-0 w-100 h-100 bg-white d-none"
+  style="z-index: 9999;"
+>
+  <div class="d-flex flex-column justify-content-center align-items-center h-100">
+    <div class="spinner-border text-warning mb-3" role="status"></div>
+    <h5>Submitting your order…</h5>
+    <small>Please don’t close this page</small>
+  </div>
+</div>
+
 
 <script src="checkout.js"></script>
 

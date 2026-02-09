@@ -7,9 +7,9 @@ const cart = JSON.parse(localStorage.getItem("cart")) || [];
 const orderSummary = document.getElementById("orderSummary");
 const summaryTotal = document.getElementById("summaryTotal");
 const form = document.getElementById("checkoutForm");
-const paymentSelect = document.getElementById("paymentMethod");
+//const paymentSelect = document.getElementById("paymentMethod");
+const paymentSelect = document.querySelector('[name="paymentMethod"]');
 const paymentQR = document.getElementById("paymentQR");
-const paymentQRImg = document.getElementById("paymentQRImg");
 
 /* 📅 Disable today & tomorrow for delivery date */
 const deliveryDateInput = document.getElementById("deliveryDate");
@@ -33,6 +33,7 @@ const paymentQRMap = {
   Maribank: "pictures/maribank-qr.PNG"
 };
 
+let submitTimeoutHandle = null;
 
 /* 🚫 Block checkout if cart is empty */
 if (cart.length === 0) {
@@ -83,17 +84,47 @@ proofFileInput.addEventListener("change", () => {
   reader.readAsDataURL(file);
 });
 
+/* Payment Method */
 paymentSelect.addEventListener("change", () => {
   const method = paymentSelect.value;
 
   if (paymentQRMap[method]) {
     paymentQRImg.src = paymentQRMap[method];
+    paymentQRImg.dataset.method = method; // ✅ for save filename
     paymentQR.style.display = "block";
   } else {
     paymentQR.style.display = "none";
     paymentQRImg.src = "";
+    paymentQRImg.dataset.method = "";
   }
 });
+
+const saveQRBtn = document.getElementById("saveQRBtn");
+const paymentQRImg = document.getElementById("paymentQRImg");
+saveQRBtn.addEventListener("click", async () => {
+  if (!paymentQRImg.src) return;
+
+  try {
+    const response = await fetch(paymentQRImg.src, { cache: "no-store" });
+    const blob = await response.blob();
+
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = `JustBakedMNL_${paymentSelect.value}_QR.png`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(blobUrl);
+  } catch (err) {
+    alert("Unable to download QR. Please long-press the image to save.");
+  }
+});
+
+
 
 
 /* 📤 Final submit handling (NORMAL form submit) */
@@ -122,6 +153,21 @@ form.addEventListener("submit", (event) => {
 
 */
 
+	/* 🔄 LOADING STATE */
+	  const submitBtn = document.getElementById("submitBtn");
+	  const submitText = document.getElementById("submitText");
+	  const submitSpinner = document.getElementById("submitSpinner");
+
+	  submitBtn.disabled = true;
+	  submitText.textContent = "Submitting order...";
+	  submitSpinner.classList.remove("d-none");
+	  document.getElementById("pageLoader").classList.remove("d-none");
+	  
+	  /* ⏱ AUTO-FAIL AFTER 20 SECONDS */
+	submitTimeoutHandle = setTimeout(() => {
+	  document.getElementById("pageLoader").classList.add("d-none");
+	  document.getElementById("submitTimeout").classList.remove("d-none");
+	}, 20000); // 20 seconds
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
