@@ -26,6 +26,12 @@ if (deliveryDateInput) {
 
   const minDate = `${yyyy}-${mm}-${dd}`;
   deliveryDateInput.min = minDate;
+  deliveryDateInput.addEventListener("change", () => {
+  if (deliveryDateInput.value < deliveryDateInput.min) {
+    alert("Please select a delivery date at least 3 days from today.");
+    deliveryDateInput.value = "";
+  }
+  });
 
   // 🚫 Prevent manual typing (mobile-safe)
   deliveryDateInput.addEventListener("keydown", e => e.preventDefault());
@@ -174,7 +180,6 @@ form.addEventListener("submit", (event) => {
 	  document.getElementById("pageLoader").classList.add("d-none");
 	  document.getElementById("submitTimeout").classList.remove("d-none");
 	}, 20000); // 20 seconds
-	
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
