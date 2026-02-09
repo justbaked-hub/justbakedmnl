@@ -12,18 +12,32 @@ const paymentSelect = document.querySelector('[name="paymentMethod"]');
 const paymentQR = document.getElementById("paymentQR");
 
 /* 📅 Disable today & tomorrow for delivery date */
-const deliveryDateInput = document.getElementById("deliveryDate");
+const deliveryDateInput = document.querySelector('input[name="deliveryDate"]');
 
 if (deliveryDateInput) {
   const today = new Date();
-  today.setDate(today.getDate() + 3); // ⛔ block today + tomorrow
+
+  // Disable first 3 days
+  today.setDate(today.getDate() + 3);
 
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth() + 1).padStart(2, "0");
   const dd = String(today.getDate()).padStart(2, "0");
 
-  deliveryDateInput.min = `${yyyy}-${mm}-${dd}`;
+  const minDate = `${yyyy}-${mm}-${dd}`;
+  deliveryDateInput.min = minDate;
+
+  // 🚫 Prevent manual typing (mobile-safe)
+  deliveryDateInput.addEventListener("keydown", e => e.preventDefault());
+  deliveryDateInput.addEventListener("paste", e => e.preventDefault());
 }
+
+deliveryDateInput.addEventListener("change", () => {
+  if (deliveryDateInput.value < deliveryDateInput.min) {
+    alert("Please select a delivery date at least 3 days from today.");
+    deliveryDateInput.value = "";
+  }
+});
 
 
 const paymentQRMap = {
