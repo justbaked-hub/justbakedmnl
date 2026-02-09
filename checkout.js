@@ -151,11 +151,18 @@ form.addEventListener("submit", (event) => {
   phoneHidden.value = "+63" + phoneLocal.value;
   
   /* 📅 Delivery date validation (mobile-safe) */
-		if (!deliveryDateInput.value) {
-		alert("Please select a delivery date at least 3 days from today.");
+	  const selectedDate = deliveryDateInput.value;
+
+	  if (selectedDate && selectedDate < deliveryDateInput.min) {
+		deliveryDateInput.setCustomValidity(
+		  "Please select a delivery date at least 3 days from today."
+		);
+		deliveryDateInput.reportValidity(); // 🔥 works on mobile
 		event.preventDefault();
 		return;
-	}
+	  } else {
+		deliveryDateInput.setCustomValidity("");
+	  }
 
   
 /*
