@@ -156,6 +156,7 @@ form.addEventListener("submit", (event) => {
   return;
 }
 
+
 	/* 🔄 LOADING STATE */
 	  const submitBtn = document.getElementById("submitBtn");
 	  const submitText = document.getElementById("submitText");
