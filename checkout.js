@@ -175,12 +175,6 @@ form.addEventListener("submit", (event) => {
 	  document.getElementById("submitTimeout").classList.remove("d-none");
 	}, 20000); // 20 seconds
 	
-  deliveryDateInput.addEventListener("change", () => {
-  if (deliveryDateInput.value < deliveryDateInput.min) {
-    alert("Please select a delivery date at least 3 days from today.");
-    deliveryDateInput.value = "";
-  }
-  });
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
