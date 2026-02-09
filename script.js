@@ -69,6 +69,7 @@ function renderProducts() {
     col.innerHTML = `
       <div class="card h-100 product-card">
         <img src="${p.img}" class="card-img-top product-img clickable-img" alt="${p.name}">
+		<span class="img-label">Tap to view</span>
         <div class="card-body text-center">
           <h5 class="card-title">${p.name}</h5>
           <p class="card-text fw-bold">₱${p.price}</p>

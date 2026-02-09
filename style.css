@@ -325,3 +325,25 @@ html, body {
     height: 140px;
   }
 }
+
+.img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  pointer-events: none; /* still allows image click */
+}
+
+/* Optional hover hint for desktop */
+.img-wrapper:hover .img-label {
+  background: rgba(0, 0, 0, 0.85);
+}
