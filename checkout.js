@@ -151,11 +151,10 @@ form.addEventListener("submit", (event) => {
   phoneHidden.value = "+63" + phoneLocal.value;
   
   /* 📅 Delivery date validation (mobile-safe) */
-	if (deliveryDateInput.value < deliveryDateInput.min) {
-	  alert("Please select a delivery date at least 3 days from today.");
-	  deliveryDateInput.focus();
-	  event.preventDefault();
-	  return;
+		if (!deliveryDateInput.value) {
+		alert("Please select a delivery date at least 3 days from today.");
+		event.preventDefault();
+		return;
 	}
 
   

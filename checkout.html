@@ -47,10 +47,21 @@
 
       <!-- 2) Delivery Date -->
       <div class="mb-3">
-        <label class="fw-bold">Date of Delivery</label>
-		<small class="text-muted">(Earliest delivery is 3 days from today)</small>
-        <input type="date" name="deliveryDate" id="deliveryDate" class="form-control" required>
-      </div>
+	  <label for="deliveryDate" class="fw-bold">Date of Delivery</label>
+	  <small class="text-muted d-block mb-1">
+		Earliest delivery is 3 days from today
+	  </small>
+	  <input
+		type="date"
+		name="deliveryDate"
+		id="deliveryDate"
+		class="form-control"
+		required
+		inputmode="none"
+		onkeydown="return false"
+	  >
+	</div>
+
 
       <!-- 3) Full Name -->
       <div class="mb-3">
