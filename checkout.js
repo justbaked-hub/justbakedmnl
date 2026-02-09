@@ -26,12 +26,6 @@ if (deliveryDateInput) {
 
   const minDate = `${yyyy}-${mm}-${dd}`;
   deliveryDateInput.min = minDate;
-  deliveryDateInput.addEventListener("change", () => {
-  if (deliveryDateInput.value < deliveryDateInput.min) {
-    alert("Please select a delivery date at least 3 days from today.");
-    deliveryDateInput.value = "";
-  }
-  });
 
   // 🚫 Prevent manual typing (mobile-safe)
   deliveryDateInput.addEventListener("keydown", e => e.preventDefault());
@@ -155,6 +149,15 @@ form.addEventListener("submit", (event) => {
     return;
   }
   phoneHidden.value = "+63" + phoneLocal.value;
+  
+  /* 📅 Delivery date validation (mobile-safe) */
+	if (deliveryDateInput.value < deliveryDateInput.min) {
+	  alert("Please select a delivery date at least 3 days from today.");
+	  deliveryDateInput.focus();
+	  event.preventDefault();
+	  return;
+	}
+
   
 /*
   if (!proofBase64Input.value) {
