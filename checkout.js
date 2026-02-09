@@ -32,13 +32,6 @@ if (deliveryDateInput) {
   deliveryDateInput.addEventListener("paste", e => e.preventDefault());
 }
 
-deliveryDateInput.addEventListener("change", () => {
-  if (deliveryDateInput.value < deliveryDateInput.min) {
-    alert("Please select a delivery date at least 3 days from today.");
-    deliveryDateInput.value = "";
-  }
-});
-
 
 const paymentQRMap = {
   Gcash: "pictures/gcash-qr.JPG",
