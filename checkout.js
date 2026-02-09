@@ -148,6 +148,13 @@ form.addEventListener("submit", (event) => {
     event.preventDefault(); // block ONLY on validation error
     return;
   }
+  
+  deliveryDateInput.addEventListener("change", () => {
+  if (deliveryDateInput.value < deliveryDateInput.min) {
+    alert("Please select a delivery date at least 3 days from today.");
+    deliveryDateInput.value = "";
+  }
+  });
 
   phoneHidden.value = "+63" + phoneLocal.value;
   
