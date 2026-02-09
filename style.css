@@ -258,3 +258,45 @@ html, body {
     transform: scale(1);
   }
 }
+
+/* 🖼 Fullscreen image viewer */
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-viewer img {
+  max-width: 95%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+/* ❌ Close button */
+.viewer-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.viewer-close:hover {
+  background: #ffc107;
+}
+

@@ -1,3 +1,5 @@
+const productGrid = document.getElementById("productGrid");
+
 // Reset cart on new browser session
 if (!sessionStorage.getItem("justbakedSession")) {
   localStorage.removeItem("cart");
@@ -5,6 +7,12 @@ if (!sessionStorage.getItem("justbakedSession")) {
 }
 
 const PRODUCTS = [
+  {
+    id: "vday",
+    name: "Valentine's Special Bundle",
+    price: 249,
+    img: "pictures/VdayJustbakedmnl.png"
+  },
   {
     id: "3cc",
     name: "3 pcs Chocolate Chip Cookies",
@@ -31,6 +39,23 @@ const PRODUCTS = [
   }
 ];
 
+
+const imageViewer = document.getElementById("imageViewer");
+const viewerImg = document.getElementById("viewerImg");
+const closeViewer = document.getElementById("closeViewer");
+
+// Close viewer
+closeViewer.addEventListener("click", closeImageViewer);
+imageViewer.addEventListener("click", (e) => {
+if (e.target === imageViewer) closeImageViewer();
+});
+
+function closeImageViewer() {
+imageViewer.classList.add("d-none");
+viewerImg.src = "";
+document.body.style.overflow = "";
+}
+
 function renderProducts() {
   const grid = document.getElementById("productGrid");
   if (!grid) return;
@@ -43,7 +68,7 @@ function renderProducts() {
 
     col.innerHTML = `
       <div class="card h-100 product-card">
-        <img src="${p.img}" class="card-img-top product-img" alt="${p.name}">
+        <img src="${p.img}" class="card-img-top product-img clickable-img" alt="${p.name}">
         <div class="card-body text-center">
           <h5 class="card-title">${p.name}</h5>
           <p class="card-text fw-bold">₱${p.price}</p>
@@ -143,6 +168,14 @@ window.addEventListener("pageshow", function (event) {
   }
 });
 
+productGrid.addEventListener("click", (e) => {
+  const img = e.target.closest("img.clickable-img");
+  if (!img) return;
+
+  viewerImg.src = img.src;
+  imageViewer.classList.remove("d-none");
+  document.body.style.overflow = "hidden";
+});
 
 
 /* Init */

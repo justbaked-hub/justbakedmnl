@@ -11,6 +11,21 @@ const paymentSelect = document.getElementById("paymentMethod");
 const paymentQR = document.getElementById("paymentQR");
 const paymentQRImg = document.getElementById("paymentQRImg");
 
+/* 📅 Disable today & tomorrow for delivery date */
+const deliveryDateInput = document.getElementById("deliveryDate");
+
+if (deliveryDateInput) {
+  const today = new Date();
+  today.setDate(today.getDate() + 3); // ⛔ block today + tomorrow
+
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+
+  deliveryDateInput.min = `${yyyy}-${mm}-${dd}`;
+}
+
+
 const paymentQRMap = {
   Gcash: "pictures/gcash-qr.JPG",
   BPI: "pictures/bpi-qr.png",
