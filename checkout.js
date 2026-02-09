@@ -148,14 +148,6 @@ form.addEventListener("submit", (event) => {
     event.preventDefault(); // block ONLY on validation error
     return;
   }
-  
-  deliveryDateInput.addEventListener("change", () => {
-  if (deliveryDateInput.value < deliveryDateInput.min) {
-    alert("Please select a delivery date at least 3 days from today.");
-    deliveryDateInput.value = "";
-  }
-  });
-
   phoneHidden.value = "+63" + phoneLocal.value;
   
 /*
@@ -182,6 +174,13 @@ form.addEventListener("submit", (event) => {
 	  document.getElementById("pageLoader").classList.add("d-none");
 	  document.getElementById("submitTimeout").classList.remove("d-none");
 	}, 20000); // 20 seconds
+	
+  deliveryDateInput.addEventListener("change", () => {
+  if (deliveryDateInput.value < deliveryDateInput.min) {
+    alert("Please select a delivery date at least 3 days from today.");
+    deliveryDateInput.value = "";
+  }
+  });
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
