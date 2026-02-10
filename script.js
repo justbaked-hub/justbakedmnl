@@ -14,28 +14,82 @@ const PRODUCTS = [
     img: "pictures/VdayJustbakedmnl.png"
   },
   {
+    id: "nib",
+    name: "Chocolate Chip Cookie Nibblers",
+    price: 199,
+    img: "pictures/ChocolateChipCookieNibblers.jpeg"
+  },
+  {
     id: "3cc",
-    name: "3 pcs Chocolate Chip Cookies",
+    name: "3 pcs - Chocolate Chip Cookies",
     price: 290,
     img: "pictures/ChocolateChipCookie.jpeg"
   },
   {
     id: "5cc",
-    name: "5 pcs Chocolate Chip Cookies",
+    name: "5 pcs - Chocolate Chip Cookies",
     price: 480,
     img: "pictures/ChocolateChipCookie.jpeg"
   },
   {
     id: "10cc",
-    name: "10 pcs Chocolate Chip Cookies",
+    name: "10 pcs - Chocolate Chip Cookies",
     price: 985,
     img: "pictures/ChocolateChipCookie.jpeg"
   },
   {
-    id: "nib",
-    name: "Chocolate Chip Cookie Nibblers",
-    price: 199,
-    img: "pictures/ChocolateChipCookieNibblers.jpeg"
+    id: "3smore",
+    name: "3 pcs - S'mores",
+    price: 310,
+    img: "pictures/smores.jpg"
+  },
+  {
+    id: "5smore",
+    name: "5 pcs - S'mores",
+    price: 520,
+    img: "pictures/smores.jpg"
+  },
+  {
+    id: "10smore",
+    name: "10 pcs - S'mores",
+    price: 999,
+    img: "pictures/smores.jpg"
+  },
+  {
+    id: "3cscc",
+    name: "3 pcs - 3Cs (Triple Chocolate topped sea salt)",
+    price: 310,
+    img: "pictures/3cs.jpeg"
+  },
+  {
+    id: "5cscc",
+    name: "5 pcs - 3Cs (Triple Chocolate topped sea salt)",
+    price: 520,
+    img: "pictures/3cs.jpeg"
+  },
+  {
+    id: "5cscc",
+    name: "10 pcs - 3Cs (Triple Chocolate topped sea salt)",
+    price: 999,
+    img: "pictures/3cs.jpeg"
+  },
+  {
+    id: "3whiteoat",
+    name: "3 pcs - White chocolate oatmeal",
+    price: 300,
+    img: "pictures/whitechocooatmeal.jpeg"
+  },
+  {
+    id: "5whiteoat",
+    name: "5 pcs - White chocolate oatmeal",
+    price: 500,
+    img: "pictures/whitechocooatmeal.jpeg"
+  },
+  {
+    id: "5whiteoat",
+    name: "10 pcs - White chocolate oatmeal",
+    price: 990,
+    img: "pictures/whitechocooatmeal.jpeg"
   }
 ];
 
