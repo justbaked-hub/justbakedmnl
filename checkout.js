@@ -157,6 +157,40 @@ form.addEventListener("submit", (event) => {
 }
 
 
+//Delivery Date Validation Logic / Scroll Back to Date Field
+const deliveryDateInput = document.getElementById("deliveryDate");
+const deliveryHint = document.getElementById("deliveryHint");
+
+// Calculate minimum allowed date (today + 3 days)
+const minDate = new Date();
+minDate.setDate(minDate.getDate() + 3);
+minDate.setHours(0, 0, 0, 0);
+
+const selectedDate = new Date(deliveryDateInput.value);
+selectedDate.setHours(0, 0, 0, 0);
+
+if (!deliveryDateInput.value || selectedDate < minDate) {
+  event.preventDefault();
+
+  // Scroll to delivery date
+  deliveryDateInput.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  // Blink the helper text
+  deliveryHint.classList.remove("blink-warning");
+  void deliveryHint.offsetWidth; // force reflow to restart animation
+  deliveryHint.classList.add("blink-warning");
+
+  // Optional: focus date input
+  deliveryDateInput.focus();
+
+  return;
+}
+
+
+
 	/* 🔄 LOADING STATE */
 	  const submitBtn = document.getElementById("submitBtn");
 	  const submitText = document.getElementById("submitText");

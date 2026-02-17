@@ -347,3 +347,20 @@ html, body {
 .img-wrapper:hover .img-label {
   background: rgba(0, 0, 0, 0.85);
 }
+
+@keyframes blinkWarning {
+  0% { opacity: 1; color: #dc3545; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.blink-warning {
+  animation: blinkWarning 0.8s ease-in-out 3;
+  font-weight: 600;
+}
+
+img {
+  content-visibility: auto;
+}
+
+
