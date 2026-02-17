@@ -182,10 +182,9 @@ if (!deliveryDateInput.value || selectedDate < minDate) {
   deliveryHint.classList.remove("blink-warning");
   void deliveryHint.offsetWidth; // force reflow to restart animation
   deliveryHint.classList.add("blink-warning");
-
-  // Optional: focus date input
-  deliveryDateInput.focus();
-
+  
+  alert("Earliest delivery date should be 3 days from today.");
+  event.preventDefault();	
   return;
 }
 
