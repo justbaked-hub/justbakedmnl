@@ -205,7 +205,7 @@ if (!deliveryDateInput.value || selectedDate < minDate) {
 	submitTimeoutHandle = setTimeout(() => {
 	  document.getElementById("pageLoader").classList.add("d-none");
 	  document.getElementById("submitTimeout").classList.remove("d-none");
-	}, 20000); // 20 seconds
+	}, 35000); // 20 seconds
 	
   /* 🧹 Clear cart before Apps Script redirect */
   setTimeout(() => {
